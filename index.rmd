@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## R Markdown
-S-plus
+S-pluseeefff
 
 ```｛r｝
 x<-1+1  #assignment
