@@ -12,9 +12,8 @@ S-plus
 
 ```｛r｝
 x<-1+1  #assignment
-x
+print(x)
 ```
-
 
 ---
 
@@ -38,3 +37,10 @@ git hint:
 
 連結到學校網站
 [這是甚麼連結](https://www.nkust.edu.tw/)
+
+---
+
+sex|name|address
+---|---|---|
+1|Amy|kao
+0|meng qi|tainan
