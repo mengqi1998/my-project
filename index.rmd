@@ -11,8 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #week note
 
-week 04
-[index](index.htbl)
+week 03
+[week 03](week 03.html)
 
 week 05
 [week 05](week 05.html)
