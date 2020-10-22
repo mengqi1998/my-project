@@ -16,3 +16,6 @@ week 03
 
 week 05
 [week 05](week-05.html)
+
+week 06
+[week 06](week-06.html)
