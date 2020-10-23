@@ -1,5 +1,7 @@
 ---
 title: "week 06"
+author: "Meng Qi"
+date: "2020/10/22"
 output: html_document
 ---
 
@@ -9,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-##元素運算
+# **元素運算**
 ```{r}
 
 x1<-T
@@ -20,7 +22,7 @@ b
 
 
 ```
-##邏輯函數
+# **邏輯函數**
 ```{r}
 A<-c("A","B","C","D")
 B<-A
@@ -36,7 +38,7 @@ temp[A!=C]
 
 which(A!=C)
 ```
-##function
+# **function**
 ```{r}
 cos_sin<-function(from,to)
 {
@@ -52,7 +54,7 @@ return(x+y)
 sum(5:7,8)
 ```
 
-##畫圖
+# **畫圖**
 ```{r}
 from<- -pi
 to<- 2*pi
@@ -62,36 +64,40 @@ plot(xsmp)
 
 ```
 
-##練習
-0.隨機產生1-300個號碼
+# **練習**
+# 1.*隨機產生1-300個號碼*
+
 ```{r}
 runif(5)
-runif(5,1,300)
-as.integer(1.4)
-as.integer(runif(300)*300)+1
+runif(5,1,300)  #產生5個1-300的號碼
+as.integer(1.4) #轉換為整數
+as.integer(runif(300)*300)+1  #0-299->*300->1-299->+1->1-300
 as.integer(runif(20,1,300))
 ```
 
-1.產生亂數300個，平均值=5，標準差為2的母體
+# 2.*產生亂數300個，平均值=5，標準差為2的母體*
 
 
 ```{r}
-x<-rnorm(300,5,2)
+x<-rnorm(300,5,2)  #rnorm 為隨機變數
 hist(x)
 ```
 
 
-2.抽樣本100個，計算這20個樣本的統計量
+# 3.*抽樣本100個，計算這20個樣本的統計量*
 
+**自己**
 ```{r}
-#自己
 y<-as.integer(runif(20,1,300))
 y
 summary(y)
 y.sum<-summary(y)
 hist(y)
 print(y.sum[4])
-#老師
+```
+**老師**
+```{r}
+
 idx<-as.integer(runif(100)*300)+1
 s<-x[idx]
 s.sum<-summary(s)
