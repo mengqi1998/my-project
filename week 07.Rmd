@@ -1,0 +1,174 @@
+---
+title: "week 07"
+author: "Meng Qi"
+date: "2020/10/29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+# 例題
+* 員工薪水分配，嚴重懷疑不是常態分配
+* boot strapping
+**把我們得到的100個樣本，重複抽取1000次，然後得到1000個平均、標準差**
+* percentile(2.5),mu,percentile(97.5)
+
+```{r}
+N<-100
+metasample<-rnorm(N,5,2)
+rndno<-as.integer(runif(N)*N)+1
+smp<-metasample[rndno]
+hist(metasample)
+hist(smp)
+```
+
+```{r}
+x<-seq(-4,4,length=100)
+dy<-dnorm(x)
+plot(x,dy,type="l",col="blue",lwd=3,lty="dotted")
+```
+```{r}
+x<-seq(-4,4,length=100)
+dy<-dnorm(x)
+plot(x,dy,type="l",col="blue",lwd=3,lty="solid",ylim=c(0,2))
+py<-pnorm(x)
+points(x,py,col="red")
+```
+
+```{r}
+N<-100
+metasample<-rnorm(N,5,2)
+rndno<-as.integer(runif(N)*N)+1#會抽到小數所以*N。+1為了讓區間從0-100
+smp<-metasample[rndno]
+hist(metasample,breake=30) #趨近常態
+hist(metasample,breake=50) #分太細會往右偏移
+#hist(metasample)
+#lx<-seq(min(metasample),max(metasample),length=100)
+#ly<-dnorm(lx,mean(metasample),sd(metasample))
+#sy<-ly*diff(lx)[1] #面積*density
+#lines(lx,ly)
+
+dd<-density(metasample) #密度函數#平滑
+plot(dd) #樣本圖
+
+dd<-density(smp)
+plot(dd)
+
+```
+
+# 迴圈
+
+```{r}
+for(i in 1:10){
+  print(i)
+}
+
+for(i in c(1,20,4,55)){
+  print(i)
+}
+
+x<-seq(1,10,1)
+x
+```
+```{r}
+x<-4
+if(x>3){
+  print(dd)
+}else{
+  print("small")
+}
+```
+
+```{r}
+x<-4
+if(x<0){
+  print("Negative number")
+}else{
+  print("Zero")
+}
+
+```
+# 題目ANS
+```{r}
+N<-1000
+metasample<-rnorm(N,5,2)
+bmu<-numeric(1000)
+
+for(i in 1:1000){
+rndno<-as.integer(runif(N)*N)+1
+smp<-metasample[rndno]
+bmu[i]<-mean(smp)
+}
+p<-density(bmu)
+plot(p)
+
+p<-density(bmu)
+print(p)
+qq<-quantile(bmu)
+rug(qq,col="red") #標示四分位
+```
+
+```{r}
+N<-500
+metasample<-rnorm(N,5,2)
+bmu<-numeric(1000)
+
+for(i in 1:1000){
+rndno<-as.integer(runif(N)*N)+1
+smp<-metasample[rndno]
+bmu[i]<-mean(smp)
+}
+p<-density(bmu)
+plot(p)
+
+p<-density(bmu)
+print(p)
+qq<-quantile(bmu)
+rug(qq,col="red") #標示四分位
+```
+
+```{r}
+N<-300
+metasample<-rnorm(N,5,2)
+bmu<-numeric(1000)
+
+for(i in 1:1000){
+rndno<-as.integer(runif(N)*N)+1
+smp<-metasample[rndno]
+bmu[i]<-mean(smp)
+}
+p<-density(bmu)
+plot(p)
+
+p<-density(bmu)
+print(p)
+qq<-quantile(bmu)
+rug(qq,col="red") #標示四分位
+```
+```{r}
+N<-100
+metasample<-rnorm(N,5,2)
+bmu<-numeric(1000)
+
+for(i in 1:1000){
+rndno<-as.integer(runif(N)*N)+1
+smp<-metasample[rndno]
+bmu[i]<-mean(smp)
+}
+p<-density(bmu)
+plot(p)
+
+p<-density(bmu)
+print(p)
+qq<-quantile(bmu)
+rug(qq,col="red") #標示四分位
+```
+
+
+
+# ***樣本大小會影響標準差***
+# ***樣本數越小平均值越大***
+

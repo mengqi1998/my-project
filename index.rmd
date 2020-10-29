@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-#week note
+# week note
 
 week 03
 [week 03](week-03.html)
@@ -19,3 +19,6 @@ week 05
 
 week 06
 [week 06](week-06.html)
+
+week 07
+[week 07](week-07.html)
