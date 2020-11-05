@@ -24,7 +24,14 @@ smp<-metasample[rndno]
 hist(metasample)
 hist(smp)
 ```
+```{r}
+x<-rnorm(400,5,2)
+h<-hist(x,breaks=20,probability=T,col="BLUE",xlab="Miles per Gallon",main = "Histogram with normalcurve")
+dx<-seq(-0,10,length=40)
+dy<-dnorm(dx,5,2)
+lines(dx,dy,type ="l",col="RED")
 
+```
 ```{r}
 x<-seq(-4,4,length=100)
 dy<-dnorm(x)

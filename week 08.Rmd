@@ -1,0 +1,104 @@
+---
+title: "week 08"
+author: "Meng Qi"
+date: "2020/11/05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+```{r}
+x<-c(0,34,33)
+y<-c(0,34,2)
+x|y
+x||y
+```
+
+# **比較實數**
+```{r}
+
+1==1
+0.1==0.1
+0.3==0.1+0.2 #精準數的問題#大部分程式語言都相同
+0.3<=0.1+0.2 #才會變成TRUE
+all.equal(0.3,0.1+0.2)
+
+
+A<-c("A","B","C","D")
+typeof(A)
+C<-c("A","V","C","E")
+A==C
+which(A==C)
+A[which(A==C)] #把不一樣的拿出來
+A[A==C] #相當於做集合運算
+
+x<-integer(0)
+x[1]<-3
+x[2]<-3
+u<-6
+u[2]<-8
+typeof("xx")
+list_data<-list("Red","Green",c(21,32,11),TRUE,51.23,119.1)
+typeof(list_data)
+list_data[1]
+list_data[5]
+list_data[[5]]+list_data[[6]] #要用兩個中括號
+```
+# **向量轉矩陣**
+```{r}
+matrix(c(3,9,5,1,-2,8),nrow=2)
+
+c1<-c(1,2,3)
+c2<-c(4,5,6)
+c3<-c(3,1)
+m1<-cbind(c1,c2,c3)
+m1
+t(m1) #轉方向
+m1[1,"c1"]
+m1*m1 #矩陣每個元素相乘
+```
+# **反矩陣**
+```{r}
+
+solve(m1) #solve解方程(線性方程)
+m1%*%solve(m1) #矩陣的乘法
+
+
+```
+```{r}
+N<-400
+sm<-5
+ss<-2
+x<-rnorm(N,sm,ss)
+h<-hist(x,breaks=20,probability=T,col="BLUE",xlab="Miles per Gallon",main = "Histogram with normalcurve")
+dx<-seq(sm-ss*3,sm+ss*3,length=40)
+dy<-dnorm(dx,sm,ss)
+lines(dx,dy,type ="l",col="RED")
+
+```
+```{r}
+N<-400
+sm<-5
+ss<-2
+n<-300
+ee<-double(n)
+for (i in 1:n) {
+  data<-rnorm(N,sm,ss)
+  ee[i]<-mean(data)
+}
+h<-hist(x,breaks=20,probability=T,col="BLUE",xlab="Miles per Gallon",main = "Histogram with normalcurve")
+dx<-seq(sm-ss*3,sm+ss*3,length=40)
+dy<-dnorm(dx,sm,ss)
+lines(dx,dy,type ="l",col="RED",lwd="4")
+qx<-quantile(ee)
+rug(qx)
+
+```
+
+
+
+
+
