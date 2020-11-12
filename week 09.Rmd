@@ -1,0 +1,139 @@
+---
+title: "week 09"
+author: "Meng Qi"
+date: "2020/11/12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **兩個座標，畫圖，無法標示出對應點**
+```{r}
+uu<-seq(0,1,length=100)
+z_scores<-qnorm(uu)
+pvalues<-pnorm(z_scores)
+plot(z_scores,pvalues,type = "l",xlab = "Quantiles",ylab = "Probability",xaxt="n",main="CDF")  #兩個座標無法標示出點
+
+axis(1,at=which(round(pvalues,2)==0.2),labels = round(qnorm(0.4),2)) 
+axis(1,at=which(round(pvalues,2)==0.4),labels = round(qnorm(0.4),2))
+axis(1,at=which(round(pvalues,2)==0.6),labels = round(qnorm(0.6),2))
+
+```
+
+
+
+# **一個座標，畫圖，並標示出對應點**
+```{r}
+zscore<-seq(-3,3,0.1)
+pvalues<-pnorm(zscore)
+plot(pvalues,type="l",xaxt="n")
+oo<-rep(F,length(zscore))
+oo[3]<-T
+axis(1,at=which(oo),label="xx")
+
+
+```
+
+
+
+# **較平滑**
+```{r}
+uu<-seq(0,1,length=100)
+uu<-uu[c(-1,-100)]
+z_scores<-qnorm(uu)
+pvalues<-pnorm(z_scores)
+plot(z_scores,pvalues,type = "l",xlab = "Quantiles",ylab = "Probability",xaxt="n",main="CDF")
+```
+
+```{r}
+uu<-seq(0,1,length=10)
+z_scores<-qnorm(uu)
+z_scores[3]<-NA
+which(z_scores==Inf)
+which(z_scores==-Inf)
+which(z_scores==NA) ##錯##NA不能跟NA比較
+NA==NA
+NA==0
+NA==Inf
+NA=="dd"
+is.na(z_scores)
+cleandta<-z_scores[which(!is.na(z_scores))]  ##清理資料
+which(is.na(z_scores))
+
+c1<-z_scores[which(!is.na(z_scores))] ##用號碼湊
+c2<-z_scores[!is.na(z_scores)]
+```
+# **題目***標準差佔的信賴區間，百分比*
+# z_scores=1,1個標準差
+```{r}
+right<-pnorm(1)
+left<-pnorm(-1)
+right-left
+right<-pnorm(2)
+left<-pnorm(-2)
+right-left
+
+
+```
+
+
+```{r}
+
+
+percentbysd<-function(sd){
+  right<-pnorm(sd)
+left<-pnorm(-sd)
+return(right-left)
+}
+percentbysd(1)
+percentbysd(2)
+
+
+```
+```{r}
+x3<-function(arg1,arg2,arg3){
+  rst<-arg1*arg2*arg3
+  return(rst)
+}
+x3(2,3,-1)
+
+```
+# 寫一個函數，用來過濾-2到2之間的值
+```{r}
+myfilter<-function(x,min,max){
+  rst<-x<=max
+  le2<-x[rst]
+  rst2<-le2>=min
+  xx<-le2[rst2]
+  return(xx)
+}
+x<-rnorm(10)
+myfilter(x,min=-0.2,max=0.2)
+myfilter(x,-0.2,0.2)
+```
+```r
+myfilter<-function(x){
+  le2<-x[x<=0.2]
+  xx<-le2[le2>=-0.2]
+  return(xx)
+}
+x<-rnorm(10)
+```
+
+# 給一個向量，要找出偶數
+```{r}
+v<-rpois(30,10)#從平均值為10的數中，抽出30個數
+h<-function(v){
+  return(v[v%%2==0])
+}
+h(v)
+
+```
+
+
+
+
+
+  
