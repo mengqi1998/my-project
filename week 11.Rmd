@@ -1,0 +1,160 @@
+---
+title: "week 11"
+author: "Meng Qi"
+date: "2020/11/26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# **複習**
+# typeof[[2]][2]  "雙中括號拿到裡面真正的內容"
+
+```{r}
+# list與c的差別
+x1<-c(1,2,3)
+x2<-c(4,5,6)
+x3<-list(x1,x2)
+x3
+length(x3)
+x4<-c(x1,x2)
+x4
+length(x4)
+```
+
+# **函數**
+```{r}
+x1<-c(1,2,3)
+x2<-c(4,5,6)
+m1<-matrix(x1,1,3)
+m1[1,1]
+#m1[2,1] #錯誤
+m1[1,2]
+m1[1,]
+#m1(1,) #不可使用小括號
+m2<-matrix(x1,3,1)
+m2
+m2[,1]
+typeof(m2[,1])
+```
+
+```{r}
+mm<-function(rcnt,ccnt,init){
+  total<-rcnt*ccnt
+  v<-double(total)
+  v[1:rcnt*ccnt]<-init
+  rst<-(matrix(v,rcnt,ccnt))
+  return(rst)
+}
+  
+mm(3,3,8)
+
+```
+# Q1:將三個向量轉變為list
+```{r}
+x1<-runif(3)
+x2<-runif(3)
+x3<-runif(3)
+x<-list(x1,x2,x3)
+length(x)
+xx<-c(x1,x2,x3)
+length(xx)
+```
+# Q2:計算幾個函數大於0.5
+```{r}
+myfilter<-function(x,min,max){
+  rst<-x>=0.5
+  le2<-x[rst]
+  return(le2)
+}
+x1<-runif(3)
+x2<-runif(3)
+x3<-runif(3)
+v<-c(x1,x2,x3)
+n<-myfilter(v)
+n
+length(n)
+
+```
+
+```{r}
+kk<-function(x){
+    return(length(x[x>0.5]))
+}
+kk(runif(10))
+```
+
+# 介紹
+* cat:解讀完在放上螢幕
+* print:老老實實直接放上去
+  
+```{r}
+x1<-list(c("a","b"),c("c","d"))
+x<-x1[[1]]
+#typeof(x)
+for (item in x) {
+  print(item)
+}
+print("_______")
+x<-x1[1]
+for (item in x) {
+  print(item)
+}
+
+
+x<-c(1,2,3)
+x[1]
+##原來是向量(x)，拿到的元素x[1]也是向量
+y<-list(1,2,3)
+##原來是list(y)，拿到的元素y[1]也是list
+##既然拿到的是list，那要拿到真正的內容必須用[[]]
+
+#"x"+"y"
+paste0("x","y")
+##字串相加
+paste("x","y")
+##非字串相加，字串會有空白格
+paste("x","y",sep = "fn gg")
+paste(c("a","b","c"),sep = "/t")
+paste(c("a","b","c"),sep = "/t",collapse = "x")
+paste(c("a","b","c"),sep = "/t",collapse = "/t")
+paste(c("a","b","c"),sep = "/t",collapse = " ")
+##collapse為了把向量攤開
+paste("a","b","c")
+paste("a","b","c",sep = " ")
+##以上兩個相同
+paste(c("a","b","c"),collapse = " ")
+##有向量就要用collapse把它攤開
+```
+
+# 檔案系統
+```{r}
+tempfile()
+cat(tempfile())
+dir(path="c:/temp/")
+#把目前的檔案資料夾列表，列出目前目錄內所有東西
+file.exists("c:/temp/week 05.RMD")
+#尋找檔案是否存在
+getwd()
+dir.create("temp")
+dir()
+
+paste0(getwd(),"temp")
+paste0(getwd(),"/","temp")
+
+```
+
+# 題目：寫一個函數，確認目前子目錄，有沒有一個檔案叫做"xx.txt"
+```{r}
+myf1<-function(afile){
+file<-dir()
+rst<-length(file[file==afile])
+return(rst>0)
+}
+myf1("xx.txt")
+```
+
+
+
+
