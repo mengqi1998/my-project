@@ -454,14 +454,14 @@ x3&lt;-runif(3)
 v&lt;-c(x1,x2,x3)
 n&lt;-myfilter(v)
 n</code></pre>
-<pre><code>## [1] 0.7332323 0.6577140 0.9823378 0.9997928 0.8573828</code></pre>
+<pre><code>## [1] 0.5821151 0.9857063 0.6945735 0.9088947 0.9050663</code></pre>
 <pre class="r"><code>length(n)</code></pre>
 <pre><code>## [1] 5</code></pre>
 <pre class="r"><code>kk&lt;-function(x){
     return(length(x[x&gt;0.5]))
 }
 kk(runif(10))</code></pre>
-<pre><code>## [1] 9</code></pre>
+<pre><code>## [1] 4</code></pre>
 </div>
 <div id="介紹" class="section level1">
 <h1>介紹</h1>
@@ -522,9 +522,9 @@ paste(c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;),collapse = &quot; &quot;)</co
 <div id="檔案系統" class="section level1">
 <h1>檔案系統</h1>
 <pre class="r"><code>tempfile()</code></pre>
-<pre><code>## [1] &quot;C:\\Users\\user\\AppData\\Local\\Temp\\Rtmp6Pd6TR\\file3b94274b461e&quot;</code></pre>
+<pre><code>## [1] &quot;C:\\Users\\user\\AppData\\Local\\Temp\\RtmpAPjsAY\\file3e7c2eb9567e&quot;</code></pre>
 <pre class="r"><code>cat(tempfile())</code></pre>
-<pre><code>## C:\Users\user\AppData\Local\Temp\Rtmp6Pd6TR\file3b947fa16dd8</code></pre>
+<pre><code>## C:\Users\user\AppData\Local\Temp\RtmpAPjsAY\file3e7c4f965d8</code></pre>
 <pre class="r"><code>dir(path=&quot;c:/temp/&quot;)</code></pre>
 <pre><code>##  [1] &quot;index.html&quot;   &quot;index.Rmd&quot;    &quot;temp&quot;         &quot;temp.Rproj&quot;   &quot;week-03.html&quot;
 ##  [6] &quot;week-05.html&quot; &quot;week-06.html&quot; &quot;week-07.html&quot; &quot;week-08.html&quot; &quot;week-09.html&quot;

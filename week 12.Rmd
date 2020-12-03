@@ -1,0 +1,131 @@
+---
+title: "week 12"
+author: "Meng Qi"
+date: "2020/12/03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+fert<-c(10,20,20,50,10,20,10,50,20)
+fert<-factor(fert)
+fert
+table(fert,fert) #交叉分析表、樞紐分析表
+```
+```{r}
+fert<-c(10,20,20,50,10,20,10,50,20)
+f1<-factor(c("a","a","a","b","b","c","c","c","c")) #樣本數要一樣
+fert<-factor(fert)
+table(fert,f1) 
+```
+
+'```{r setup}
+'knit::opts_低hunk$set(e低ho=TRUE)
+'```
+
+```{r}
+f1<-c("高","高","高","中","中","低","低","低","低")
+ff<-factor(f1,levels=c("低","中","高"),order=T)
+ff
+```
+```{r}
+f2<-c("高","高","高","中","中","低","低","低","低")
+f2<-factor(f2)
+f1<-c("高","高","高","中","中","低","低","低","低")
+f1<-factor(f1,levels=c("低","中","高"),order=T)
+f1
+f2
+```
+
+```{r}
+x<-c(1,2,3,4)
+summary(x)
+fert<-c(10,20,20,50,10,20,10,50,20)
+f1<-factor(c("a","a","a","b","b","c","c","c","c")) #樣本數要一樣
+fert<-factor(fert)
+str(f1)
+class(f1)
+typeof(f1)
+attributes(f1)
+levels(f1)
+cc<-levels(f1)
+typeof(f1)
+cc[1]
+cc[2]
+cc[3]
+class(cc)
+str(cc)
+typeof(cc)
+cc[1]
+attr(f1,"levels")
+as.numeric(levels(fert)[fert])
+xx<-levels(fert)
+xx
+xx[1]
+xx[2]
+xx[c(1,2,1,1,2,3,1)]
+levels(fert)[fert] #出來是字串向量
+levels(fert)[1]
+levels(fert)[2]
+levels(fert)[3]
+typeof(fert)
+# min(fert)
+fert
+
+```
+## 讀取檔案(EXCEL)交叉分析表
+```{r}
+tree<-read.csv("trees92.csv")
+tree
+View(tree)
+typeof(tree) #顯示為list所以用$就可連結欄位名稱
+class(tree)
+str(tree)
+attributes(tree)
+names(tree)
+row.names(tree)
+summary(tree$C)
+x<-summary(tree$C)
+table(x)
+tree$C<-x
+table(tree$C)
+summary(tree)
+tree$N<-factor(tree$N) #與C相同概念，方式較快
+summary(tree)
+
+barplot(table(tree$C))
+
+```
+
+## 讀中文
+```{r}
+tree1<-read.csv("trees91.csv",encoding = "UTF-8")
+tree1$"中文"<-factor(tree1$"中文") #(3.6.1)一定要用反頓號因為中文不合法(3.6.2)雙引號
+tree$N<-factor(tree1$"中文")
+summary(tree1$"中文")
+```
+## STRING
+- paste0是paste的簡化版(有些東西被預設掉了)
+- paste裡面的參數sep預設為""(空白)
+- "a"+"b"="ab" sep當成加號黏起來使用
+- "a"+"b" = "a"`sep`"b"
+```{r}
+paste0("a","b") #"a"+"b"="ab"sep當成加號黏起來使用
+paste0("a","b",collapse = "-------")
+paste0(c("a","b"),c(1,2))
+paste0(c("a","b"),c(1,2),collapse = "----")
+print("------")
+paste("a","b",sep="")==paste0("a","b") #"a"+"b" = "a"`sep`"b"
+
+
+```
+
+
+
+
+
+
