@@ -34,3 +34,6 @@ week 11
 
 week 12
 [week 12](week-12.html)
+
+week 13
+[week 13](week-13.html)

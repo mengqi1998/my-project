@@ -1,0 +1,122 @@
+---
+title: "week 13"
+author: "Meng Qi"
+date: "2020/12/10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+- 要知道資料集裡面有甚麼欄位：names(cars)
+- 要知道前10筆資料：head(cars),tail(cars)
+
+## 問題
+- 寫一個函數，要知道我們要的資料集是不是已經內建，例如：iris是不是內建資料
+- 列表,DT(尋找：r DT tabledata)
+- 要列出五個統計量
+
+```{r}
+
+x<-data()
+str(x) #猜有4個list?
+x$title #進一步確認各個欄位
+x$header #看來是空的
+x$results #有三個欄位Package,LibPath,Item
+row.names<-(x$results)
+str(x$results)
+x$results[1,1]
+str(x$results[1,1])
+names(x$results[1,1])
+dimnames(x$results)
+row.names(x$results)
+colnames(x$results)
+
+```
+# 我的解法
+```{r}
+dn<-data()
+str(dn)  #..解釋results有甚麼內容。可以看到results是矩陣
+attributes(dn)
+dn$results
+dimnames(dn$results)
+class(dn$results)
+o<-dn$results
+o[,3]
+o[63,3]
+```
+# 老師解法
+```{r}
+dn<-data()
+str(dn)  #..解釋results有甚麼內容。可以看到results是矩陣
+attributes(dn)
+dn$results
+dimnames(dn$results)
+class(dn$results)
+dsname<-dn$results[,"Item"]
+dsname
+head(dsname)
+str(dsname)
+dsname[3]
+dsname=="iris"  #找資料內是否有這個值
+dsname[dsname=="iris"] #從裡面傳回此值
+length(dsname[dsname=="iris"])
+```
+```{r}
+isDsExists<-function(given){
+  dn<-data()
+  dsname<-dn$results[,"Item"]
+  rst<-length(dsname[dsname==given])
+  rst
+  if(rst!=0){
+    return(T)
+  }
+    else{
+      return(F)
+    }
+}
+isDsExists("iris")
+
+```
+
+```{r}
+isDsExists<-function(given){
+  dn<-data()
+  dsname<-dn$results[,"Item"]
+  return(any(dsname==given))
+  if(rst!=0){
+    return(T)
+  }
+    else{
+      return(F)
+    }
+}
+isDsExists("iris")
+
+```
+```{r}
+isDsExists<-function(given){
+  dn<-data()
+  dsname<-dn$results[,"Item"]
+  return(any(dsname==given))
+}
+isDsExists("iris")
+isDsExists("xx")
+```
+
+## datatable
+- 先下載install.packages("DT")
+```{r}
+library(DT)
+dn<-data
+
+df<-data.frame(dsname)
+datatable(df)
+
+```
+
+```{r}
+source("isDsExists.R")
+isDsExists("iris")
+isDsExists("xx")
+```

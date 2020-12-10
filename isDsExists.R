@@ -1,0 +1,11 @@
+isDsExists<-function(given){
+  dn<-data()
+  dsname<-dn$results[,"Item"]
+  return(any(dsname==given))
+  if(rst!=0){
+    return(T)
+  }
+  else{
+    return(F)
+  }
+}
