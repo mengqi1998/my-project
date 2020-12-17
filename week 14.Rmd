@@ -1,0 +1,93 @@
+---
+title: "week 14"
+author: "Meng Qi"
+date: "2020/12/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## 檔案系統
+```{r}
+tempfile() #暫時子目錄
+cat("x\nx")
+cat("x\\nx")
+print("x\nx")
+tempfile("xxx")
+system.file(package="stats")
+list.files(system.file(package="stats")) #列出裡面檔案
+length(list.files(system.file(package="stats"))) #計算裡面檔案數量
+tempdir()
+file.path(tempdir(),"xxx")
+
+```
+
+
+```{r}
+library(DT)
+fm<-read.csv(file = "C:/temp/wh.csv",header =T,comment.char = "#",as.is = T) #逃逸字元 #as.is = T讓缺失值可被處理
+fm
+fm$weight<-as.numeric(fm$weight)
+fm$ratio<-fm$height/fm$weight
+datatable(fm,rownames=F)
+```
+```{r}
+colnames(fm)<-c("身高","性別","體重","比例") #改欄位名稱
+datatable(fm,rownames=F)
+```
+```{r}
+write.csv(fm,file = "C:/temp/foo.csv",row.names = F)
+```
+# 讀取中文務必用fileEncoding
+```{r}
+fm2<-read.csv(file= "C:/temp/wh_chinese.csv",header =T,comment.char = "#",as.is = T,fileEncoding = "UTF-8")
+fm2 
+```
+```{r}
+library(DT)
+ms<-installed.packages() #知道目前有甚麼下載過的packages
+View(ms)
+str(ms)
+dimnames(ms)
+rownames(ms)
+e<-data.frame(ms)
+names(e)
+a<-e$Package
+b<-e$LibPath
+c<-e$Version
+fm3<-data.frame(a,b,c)
+datatable(fm3,rownames=F)
+colnames(fm3)<-c("套件","路徑","版本")
+fm3
+datatable(fm3,rownames=F)
+
+write.csv(fm3,file = "C:/temp/zoo.csv",row.names = F)
+m1<-read.csv(file= "C:/temp/zoo.csv",header =T,comment.char = "#",as.is = T)
+m1
+```
+# 老師解答
+```{r}
+
+fm4<-fm3[,1:3]
+names(fm4)
+datatable(fm4)
+fm5<-fm4[order(fm4$'版本'),] #將他用版本排序
+fm5
+datatable(fm5)
+```
+
+```{r}
+mm<-matrix(c(1,2,9,3,5,9,1,2),2,4) #用成2*4的矩陣
+mm[order(mm[,2]),]
+```
+
+```{r}
+m1<-read.csv(file= "C:/temp/zoo.csv",as.is = T)
+m1
+# strsplit("a.b.c",".",fixed = TRUE)
+u<-strsplit(m1$'版本',".",fixed = TRUE)
+
+
+
+```
