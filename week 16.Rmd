@@ -143,13 +143,13 @@ EDA(pay)
 ```{r}
 rr<-runif(1000)
 MS=read.csv("mathstat.csv",header=T)
-qqplot(MS$maths,rr)
+qqplot(MS$maths,rr) #代表使用不同的分配所以非一直線
 qqplot(MS$stats,rr)
 ```
 ```{r}
 r1<-runif(1000)
 r2<-runif(2000)
-qqplot(r1,r2)
+qqplot(r1,r2) #代表r1r2皆用相同的分配所以呈現一直線
 ```
 
 
