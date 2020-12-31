@@ -40,3 +40,9 @@ week 13
 
 week 14
 [week 14](week-14.html)
+
+week 15
+[week 15](week-15.html)
+
+week 16
+[week 16](week-16.html)
