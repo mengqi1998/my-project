@@ -11,9 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #source("isDsExists.R")
 #install.packages("AER") #裝AER
-#library("AER")
-#data("Journals", package = "AER")
-Journals<-read.csv("Journals.csv")
+library("AER")
+data("Journals", package = "AER")
 View(Journals)
 journals<-Journals[,c("subs","price")]
 journals$citeprice <- Journals$price/Journals$citations
