@@ -46,3 +46,6 @@ week 15
 
 week 16
 [week 16](week-16.html)
+
+week 17
+[week 17](week-17.html)
